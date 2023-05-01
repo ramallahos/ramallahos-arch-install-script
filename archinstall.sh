@@ -37,11 +37,11 @@ elif [[ -f /var/lib/pacman/db.lck ]]; then
     # exit 0
 fi
 
-main() {
-  ( bash $1 )|& tee main.log
-}
+# main() {
+#   ( bash $1 )|& tee main.log
+# }
 
-main << MAIN
+bash << MAIN
 timedatectl set-ntp true
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib terminus-font reflector rsync grub gptfdisk btrfs-progs glibc
@@ -138,7 +138,7 @@ if [[  $TOTAL_MEM -lt 8000000 ]]; then
 fi
 MAIN
 
-arch-chroot /mnt /bin/bash << BASE 1> setup.log
+arch-chroot /mnt /bin/bash << BASE # 1> setup.log
 #!/usr/bin/env bash
 
 pacman -S --noconfirm --needed networkmanager dhclient pacman-contrib curl reflector rsync grub arch-install-scripts git
@@ -210,7 +210,7 @@ fi
 BASE
 
 
-arch-chroot /mnt /usr/bin/runuser -u $USERNAME -- << PACKAGES 1> packages.log
+arch-chroot /mnt /usr/bin/runuser -u $USERNAME -- << PACKAGES # 1> packages.log
 
 
 # git clone "https://aur.archlinux.org/$AUR_HELPER.git"
