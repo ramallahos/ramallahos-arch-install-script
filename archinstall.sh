@@ -44,7 +44,7 @@ main() {
 main << MAIN
 timedatectl set-ntp true
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-pacman -S --noconfirm --needed archlinux-keyring pacman-contrib terminus-font reflector rsync grub gptfdisk btrfs-progs glibc
+pacman -Sy --noconfirm --needed archlinux-keyring pacman-contrib terminus-font reflector rsync grub gptfdisk btrfs-progs glibc
 setfont ter-v22b
 if [[ "$REFLECTOR" == "yes" ]]; then
     cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
